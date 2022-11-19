@@ -1,8 +1,5 @@
 
 ## Overview
-For this project we will explore the challenges associated with providing reliable delivery services over an unreliable network. 
-
-Three different ARQ approaches have been described: stop-and-wait, concurrent logical channels, and sliding window. 
 
 Your task during this project is to develop a set of Java classes capable of reliably transferring a file between two hosts over UDP (TCP already offers reliable delivery services).
 
