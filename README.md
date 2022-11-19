@@ -239,29 +239,21 @@ If you're working from command-line, [google-java-format](https://github.com/goo
 - `./build.ps1 fmt`
 - `./build.sh fmt`
 
-## Commits
-Commits should be made incrementally. Many commits are always better than few, and commits can always be squashed together later if there are too many. You should try to make a commit every time you've made tangible progress in the development of your code.
+## FINAL NOTES
 
-Every commit should have a commit message. The standard format for commit messages is to start with a verb in present-tense followed by a concise message (typically less than 50 characters) that summarizes the change that the commit is introducing to the repo. For example, "Updates README", "Implements Array", "Passes testGet".
+You need to implement a static method on RSendUDP that can parse a substring into your frame format to support testing
 
-Popular IDEs, such as Eclipse and VS Code, provide integrated Git tools. If you're on Windows, you can install Git Bash or Windows Subsystem for Linux (WSL). If you're on Mac or Linux, you already have git installed.
+You need to implement a static method on RReceiveUDP that produce an ACK for a given sequence number to support testing
 
-If you've just installed git, it will need to be configured. The easy way to configure git is from a terminal. Use the following commands.
-- `git config --global user.name "<github-username-goes-here>"`
-- `git config --global user.email "<github-email-goes-here>"`
-- `git config --global pull.rebase true` (optional)
-- `git config --global fetch.prune true` (optional)
-- `git config --global diff.colorMoved zebra` (optional)
+Provided tests now test that you're validating the inputs to your setters
 
-To sync changes made from another device, use the following command.
-- `git fetch origin main`
-- `git pull origin main`
+Note that there have been changes to the send and receive in RSendUDP and RReceiveUDP, respectively
 
-To push commits from command line, use the following commands.
-- `git add -A`
-- `git commit -m "<your message goes here>"`
-- `git push origin main`
+The send in RSendUDP now throttles sends by 1/10th of a second. This is necessary in Java. If you call send on a datagram socket too quickly, then it will only send some of the packets and ignore others.
 
-You can also sync all changes and submit with the following commands depending on your terminal.
-- `./build.ps1 submit`
-- `./build.sh submit`
+The receive in RReceiveUDP now uses a timeout. When a socket timesout, it produces a kind of IOException called SocketTimeoutException.
+
+I would recommend that you implement a timeout cap in both of your implementations. If sendFile timeouts too many times trying to receive an ACK, then it should exit. Similarly, if RReceiveUDP timesout too many times trying to receive frames, then it should exit.
+
+You should check out the test code to see the String message that's being used for testing.
+
