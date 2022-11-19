@@ -1,0 +1,2 @@
+language = "java"
+run = "javac -d target -cp lib/*.jar:src src/test/java/TUGrader.java && java -cp lib/*:target test.java.TUGrader"
