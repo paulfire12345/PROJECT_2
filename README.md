@@ -1,8 +1,16 @@
 
 ## Overview
-For this project we will explore the challenges associated with providing reliable delivery services over an unreliable network. Three different ARQ approaches have been described in class: stop-and-wait, concurrent logical channels, and sliding window. Your task during this project is to develop a set of Java classes capable of reliably transferring a file between two hosts over UDP (TCP already offers reliable delivery services).
+For this project we will explore the challenges associated with providing reliable delivery services over an unreliable network. 
 
-YOU will be provided with a *UDPSocket* class that extends the *DatagramSocket* class provided by Java to send a *DatagramPacket* over UDP. Take time to familiarize yourself with the main two classes provided by Java for UDP support and their functionality. The UDPSocket class has the additional capability of allowing programmers to modify the MTU (to model fragmentation), the packet drop rate (to model unreliable networks) and add random time delays to packets (to model out-of-order reception).
+Three different ARQ approaches have been described: stop-and-wait, concurrent logical channels, and sliding window. 
+
+Your task during this project is to develop a set of Java classes capable of reliably transferring a file between two hosts over UDP (TCP already offers reliable delivery services).
+
+YOU will be provided with a *UDPSocket* class that extends the *DatagramSocket* class provided by Java to send a *DatagramPacket* over UDP. 
+
+Take time to familiarize yourself with the main two classes provided by Java for UDP support and their functionality. 
+
+The UDPSocket class has the additional capability of allowing programmers to modify the MTU (to model fragmentation), the packet drop rate (to model unreliable networks) and add random time delays to packets (to model out-of-order reception).
 
 ### Support material
 Parameters regulating message transfers using the UDPSocket class are located in a file named **unet.properties**. This file may be modified to test different scenarios (the file includes comments describing each parameter). Note that you can also use this file to enable and configure logging options (to file or standard output stream).
